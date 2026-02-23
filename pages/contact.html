@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8cd3c18bd8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Cake Xpress - Contact Us</title>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo"><img src="../images/cake xpress logo1.png" alt="Logo"></a>
+        <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="cakes.html">Cakes</a>
+            <a href="pastries.html">Pastries</a>
+            <a href="new-arrivals.html">New Arrivals</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="icons">
+            <div class="cart-icon">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="menu-icon"><i class="fa-solid fa-list"></i></div>
+        </div>
+
+        <div class="cart-items-container">
+            <div class="cart-content">
+                <div class="empty-cart" style="text-align: center; padding: 2rem; color: #666;">
+                    <p style="font-size: 1.6rem;">Your cart is empty</p>
+                </div>
+                <div class="cart-items"></div>
+                <div class="cart-footer" style="display: none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span class="total-price">₹0</span>
+                    </div>
+                    <a href="checkout.html" class="btn checkout-btn">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="products-page">
+        <h1 class="title">Contact <span>Us</span></h1>
+        
+        <div style="max-width: 100rem; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr)); gap: 3rem; margin-bottom: 4rem;">
+                <div style="background: white; padding: 3rem; border-radius: 1rem; box-shadow: var(--shadow); text-align: center;">
+                    <i class="fa-solid fa-phone" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Phone</h3>
+                    <p style="font-size: 1.6rem; color: #666;">+91 1234567890</p>
+                </div>
+                <div style="background: white; padding: 3rem; border-radius: 1rem; box-shadow: var(--shadow); text-align: center;">
+                    <i class="fa-solid fa-envelope" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Email</h3>
+                    <p style="font-size: 1.6rem; color: #666;">info@cakexpress.com</p>
+                </div>
+                <div style="background: white; padding: 3rem; border-radius: 1rem; box-shadow: var(--shadow); text-align: center;">
+                    <i class="fa-solid fa-location-dot" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Address</h3>
+                    <p style="font-size: 1.6rem; color: #666;">Airoli, Navi Mumbai<br>Maharashtra, India</p>
+                </div>
+            </div>
+
+            <div style="background: white; padding: 4rem; border-radius: 1rem; box-shadow: var(--shadow);">
+                <h2 style="font-size: 2.5rem; margin-bottom: 2rem; color: var(--primary-color); text-align: center;">Send Us a Message</h2>
+                <form id="contact-form">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                        <div>
+                            <label style="display: block; font-size: 1.6rem; margin-bottom: .5rem;">Name *</label>
+                            <input type="text" required style="width: 100%; padding: 1.2rem; font-size: 1.6rem; border: .1rem solid #ddd; border-radius: .5rem;">
+                        </div>
+                        <div>
+                            <label style="display: block; font-size: 1.6rem; margin-bottom: .5rem;">Email *</label>
+                            <input type="email" required style="width: 100%; padding: 1.2rem; font-size: 1.6rem; border: .1rem solid #ddd; border-radius: .5rem;">
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; font-size: 1.6rem; margin-bottom: .5rem;">Subject *</label>
+                        <input type="text" required style="width: 100%; padding: 1.2rem; font-size: 1.6rem; border: .1rem solid #ddd; border-radius: .5rem;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; font-size: 1.6rem; margin-bottom: .5rem;">Message *</label>
+                        <textarea required rows="6" style="width: 100%; padding: 1.2rem; font-size: 1.6rem; border: .1rem solid #ddd; border-radius: .5rem; resize: vertical;"></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; cursor: pointer;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Cake Xpress</h3>
+                <p>Your trusted bakery for fresh cakes, pastries, and desserts. Making celebrations sweeter since day one.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="../index.html">Home</a>
+                <a href="cakes.html">Cakes</a>
+                <a href="pastries.html">Pastries</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-phone"></i> +91 1234567890</p>
+                <p><i class="fa-solid fa-envelope"></i> info@cakexpress.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Airoli, Maharashtra</p>
+                <p><i class="fa-solid fa-cake-candles"></i><p>
+                                </div>
+        </div>
+        <div class="social-media">
+            <a href="#" class="fa-brands fa-facebook"></a>
+            <a href="#" class="fa-brands fa-twitter"></a>
+            <a href="#" class="fa-brands fa-instagram"></a>
+            <a href="#" class="fa-brands fa-linkedin"></a>
+        </div>
+        <div class="credits">
+            Created by <span>Cake Xpress Team</span> | all rights reserved.
+        </div>
+    </footer>
+
+    <script src="../js/cart.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
