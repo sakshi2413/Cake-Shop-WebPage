@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/8cd3c18bd8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Cake Xpress - Pastries</title>
+</head>
+<body>
+    <header class="header">
+        <a href="../index.html" class="logo"><img src="../images/cake xpress logo1.png" alt="Logo"></a>
+        <nav class="navbar">
+            <a href="../index.html">Home</a>
+            <a href="cakes.html">Cakes</a>
+            <a href="pastries.html">Pastries</a>
+            <a href="new-arrivals.html">New Arrivals</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="icons">
+            <div class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <div class="cart-icon">
+                <i class="fa-solid fa-basket-shopping"></i>
+                <span class="cart-count">0</span>
+            </div>
+            <div class="menu-icon"><i class="fa-solid fa-list"></i></div>
+        </div>
+
+        <div class="search-form">
+            <input type="search" name="search" id="search-box" placeholder="search here...">
+            <label for="search-box"><i class="fa-solid fa-magnifying-glass"></i></label>
+        </div>
+        
+        <div class="cart-items-container">
+            <div class="cart-content">
+                <div class="empty-cart" style="text-align: center; padding: 2rem; color: #666;">
+                    <p style="font-size: 1.6rem;">Your cart is empty</p>
+                </div>
+                <div class="cart-items"></div>
+                <div class="cart-footer" style="display: none;">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span class="total-price">₹0</span>
+                    </div>
+                    <a href="checkout.html" class="btn checkout-btn">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="products-page">
+        <h1 class="title">Our <span>Pastries</span></h1>
+        <div class="wrapper">
+            <div class="cake-card" data-product-id="10" data-product-name="Chocolate Brownie" data-product-price="80" data-product-image="../images/brownie.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/brownie.jpeg" alt="Chocolate Brownie">
+                </div>
+                <h3>Chocolate Brownie</h3>
+                <div class="price">₹80</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="11" data-product-name="Blueberry Muffin" data-product-price="60" data-product-image="../images/muffin.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/muffin.jpeg" alt="Blueberry Muffin">
+                </div>
+                <h3>Blueberry Muffin</h3>
+                <div class="price">₹60</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="12" data-product-name="Croissant" data-product-price="70" data-product-image="../images/croissant.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/croissant.jpeg" alt="Croissant">
+                </div>
+                <h3>Croissant</h3>
+                <div class="price">₹70</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="13" data-product-name="Danish Pastry" data-product-price="90" data-product-image="../images/danish.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/danish.jpeg" alt="Danish Pastry">
+                </div>
+                <h3>Danish Pastry</h3>
+                <div class="price">₹90</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="14" data-product-name="Macarons" data-product-price="120" data-product-image="../images/macroons.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/macroons.jpeg" alt="Macarons">
+                </div>
+                <h3>Macarons</h3>
+                <div class="price">₹120</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="15" data-product-name="Eclair" data-product-price="85" data-product-image="../images/eclair.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/eclair.jpeg" alt="Eclair">
+                </div>
+                <h3>Eclair</h3>
+                <div class="price">₹85</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="16" data-product-name="Fruit Tart" data-product-price="110" data-product-image="../images/tart.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/tart.jpeg" alt="Fruit Tart">
+                </div>
+                <h3>Fruit Tart</h3>
+                <div class="price">₹110</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="17" data-product-name="Cupcakes" data-product-price="75" data-product-image="../images/cupcake.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/cupcake.jpeg" alt="Cupcakes">
+                </div>
+                <h3>Cupcakes</h3>
+                <div class="price">₹75</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+
+            <div class="cake-card" data-product-id="18" data-product-name="Donuts" data-product-price="50" data-product-image="../images/donut.jpeg">
+                <div class="img-wrapper">
+                    <img src="../images/donut.jpeg" alt="Donuts">
+                </div>
+                <h3>Donuts</h3>
+                <div class="price">₹50</div>
+                <a href="#" class="btn add-to-cart">Add to Cart</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Cake Xpress</h3>
+                <p>Your trusted bakery for fresh cakes, pastries, and desserts. Making celebrations sweeter since day one.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="../index.html">Home</a>
+                <a href="cakes.html">Cakes</a>
+                <a href="pastries.html">Pastries</a>
+                <a href="about.html">About</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-phone"></i> +91 1234567890</p>
+                <p><i class="fa-solid fa-envelope"></i> info@cakexpress.com</p>
+                <p><i class="fa-solid fa-location-dot"></i> Airoli, Maharashtra</p>
+            </div>
+        </div>
+        <div class="social-media">
+            <a href="#" class="fa-brands fa-facebook"></a>
+            <a href="#" class="fa-brands fa-twitter"></a>
+            <a href="#" class="fa-brands fa-instagram"></a>
+            <a href="#" class="fa-brands fa-linkedin"></a>
+        </div>
+        <div class="credits">
+            Created by <span>Cake Xpress Team</span> | all rights reserved.
+        </div>
+    </footer>
+
+    <script src="../js/cart.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

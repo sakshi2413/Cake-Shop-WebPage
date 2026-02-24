@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Xpress - API Explorer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .status-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .status-icon {
+            font-size: 48px;
+        }
+
+        .status-text h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .status-text p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .endpoint-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .endpoint-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .endpoint-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .method {
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .method-get {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .method-post {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .method-patch {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .endpoint-url {
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .endpoint-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .test-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .test-button:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+        }
+
+        .response-box {
+            margin-top: 15px;
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .response-box.show {
+            display: block;
+        }
+
+        .response-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .info-box h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .copy-button {
+            background: transparent;
+            border: 1px solid #667eea;
+            color: #667eea;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        .copy-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎂 Cake Xpress API Explorer</h1>
+        <p class="subtitle">Interactive API Documentation & Testing Tool</p>
+
+        <div class="status-card" id="status-card">
+            <div class="status-icon">⏳</div>
+            <div class="status-text">
+                <h2>Checking backend connection...</h2>
+                <p>Please wait while we test the API</p>
+            </div>
+        </div>
+
+        <div class="stats" id="stats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-label">Total Products</div>
+                <div class="stat-value" id="products-count">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Orders</div>
+                <div class="stat-value" id="orders-count">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Revenue</div>
+                <div class="stat-value" id="total-revenue">₹0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">API Status</div>
+                <div class="stat-value" style="color: #28a745;">✓ Online</div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 40px; margin-bottom: 20px; color: #333;">Available Endpoints</h2>
+
+        <div class="endpoint-grid">
+            <!-- Health Check -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-get">GET</span>
+                    <span class="endpoint-url">/api/health</span>
+                    <button class="copy-button" onclick="copyUrl('/api/health')">📋 Copy</button>
+                    <button class="test-button" onclick="testEndpoint('health')">Test</button>
+                </div>
+                <div class="endpoint-description">
+                    Check if the API server is running and responding correctly.
+                </div>
+                <div class="response-box" id="response-health"></div>
+            </div>
+
+            <!-- Get All Products -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-get">GET</span>
+                    <span class="endpoint-url">/api/products</span>
+                    <button class="copy-button" onclick="copyUrl('/api/products')">📋 Copy</button>
+                    <button class="test-button" onclick="testEndpoint('products')">Test</button>
+                </div>
+                <div class="endpoint-description">
+                    Retrieve all products from the database (cakes, pastries, new arrivals).
+                </div>
+                <div class="response-box" id="response-products"></div>
+            </div>
+
+            <!-- Get Products by Category -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-get">GET</span>
+                    <span class="endpoint-url">/api/products/category/:category</span>
+                    <button class="copy-button" onclick="copyUrl('/api/products/category/cake')">📋 Copy</button>
+                </div>
+                <div class="endpoint-description">
+                    Get products filtered by category. Categories: <code>cake</code>, <code>pastry</code>, <code>new-arrival</code>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <button class="test-button" onclick="testEndpoint('products-cake')">Test: Cakes</button>
+                    <button class="test-button" onclick="testEndpoint('products-pastry')">Test: Pastries</button>
+                    <button class="test-button" onclick="testEndpoint('products-new')">Test: New Arrivals</button>
+                </div>
+                <div class="response-box" id="response-products-category"></div>
+            </div>
+
+            <!-- Get Single Product -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-get">GET</span>
+                    <span class="endpoint-url">/api/products/:id</span>
+                    <button class="copy-button" onclick="copyUrl('/api/products/1')">📋 Copy</button>
+                    <button class="test-button" onclick="testEndpoint('product-single')">Test (ID: 1)</button>
+                </div>
+                <div class="endpoint-description">
+                    Get details of a specific product by its ID.
+                </div>
+                <div class="response-box" id="response-product-single"></div>
+            </div>
+
+            <!-- Get All Orders -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-get">GET</span>
+                    <span class="endpoint-url">/api/orders</span>
+                    <button class="copy-button" onclick="copyUrl('/api/orders')">📋 Copy</button>
+                    <button class="test-button" onclick="testEndpoint('orders')">Test</button>
+                </div>
+                <div class="endpoint-description">
+                    Retrieve all orders from the database with customer details and order items.
+                </div>
+                <div class="response-box" id="response-orders"></div>
+            </div>
+
+            <!-- Get Single Order -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-get">GET</span>
+                    <span class="endpoint-url">/api/orders/:id</span>
+                    <button class="copy-button" onclick="copyUrl('/api/orders/1')">📋 Copy</button>
+                    <button class="test-button" onclick="testEndpoint('order-single')">Test (ID: 1)</button>
+                </div>
+                <div class="endpoint-description">
+                    Get details of a specific order including all order items.
+                </div>
+                <div class="response-box" id="response-order-single"></div>
+            </div>
+
+            <!-- Create Order -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-post">POST</span>
+                    <span class="endpoint-url">/api/orders</span>
+                    <button class="copy-button" onclick="copyUrl('/api/orders', 'POST')">📋 Copy</button>
+                    <button class="test-button" onclick="testEndpoint('create-order')">Test (Sample Order)</button>
+                </div>
+                <div class="endpoint-description">
+                    Create a new order. Requires customer details and order items in request body.
+                </div>
+                <div class="response-box" id="response-create-order"></div>
+            </div>
+
+            <!-- Update Order Status -->
+            <div class="endpoint-card">
+                <div class="endpoint-header">
+                    <span class="method method-patch">PATCH</span>
+                    <span class="endpoint-url">/api/orders/:id/status</span>
+                    <button class="copy-button" onclick="copyUrl('/api/orders/1/status', 'PATCH')">📋 Copy</button>
+                </div>
+                <div class="endpoint-description">
+                    Update the status of an order. Status options: <code>pending</code>, <code>processing</code>, <code>delivered</code>, <code>cancelled</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>📌 How to Use This API</h3>
+            <p><strong>Base URL:</strong> <code>http://localhost:3000/api</code></p>
+            <p><strong>Authentication:</strong> None (for development)</p>
+            <p><strong>Response Format:</strong> JSON</p>
+            <p><strong>CORS:</strong> Enabled for localhost</p>
+            <br>
+            <p><strong>💡 Tip:</strong> Click "Test" buttons to see live API responses. Click "Copy" to copy endpoint URLs to your clipboard.</p>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        let statsLoaded = false;
+
+        // Check backend status on page load
+        window.onload = async function() {
+            await checkBackendStatus();
+            if (statsLoaded) {
+                loadStats();
+            }
+        };
+
+        async function checkBackendStatus() {
+            const statusCard = document.getElementById('status-card');
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (data.status === 'OK') {
+                    statusCard.innerHTML = `
+                        <div class="status-icon">✅</div>
+                        <div class="status-text">
+                            <h2>Backend is running!</h2>
+                            <p>${data.message} at ${new Date().toLocaleTimeString()}</p>
+                        </div>
+                    `;
+                    statusCard.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                    document.getElementById('stats').style.display = 'grid';
+                    statsLoaded = true;
+                } else {
+                    throw new Error('Unexpected response');
+                }
+            } catch (error) {
+                statusCard.innerHTML = `
+                    <div class="status-icon">❌</div>
+                    <div class="status-text">
+                        <h2>Backend is offline</h2>
+                        <p>Make sure to run: npm start in the backend folder</p>
+                    </div>
+                `;
+                statusCard.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+            }
+        }
+
+        async function loadStats() {
+            try {
+                // Get products count
+                const productsRes = await fetch(`${API_BASE}/products`);
+                const productsData = await productsRes.json();
+                if (productsData.success) {
+                    document.getElementById('products-count').textContent = productsData.data.length;
+                }
+
+                // Get orders count and revenue
+                const ordersRes = await fetch(`${API_BASE}/orders`);
+                const ordersData = await ordersRes.json();
+                if (ordersData.success) {
+                    const orders = ordersData.data || [];
+                    document.getElementById('orders-count').textContent = orders.length;
+                    const revenue = orders.reduce((sum, order) => sum + parseFloat(order.total_amount || 0), 0);
+                    document.getElementById('total-revenue').textContent = '₹' + revenue.toFixed(2);
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        async function testEndpoint(endpoint) {
+            let url, method = 'GET', body = null;
+            let responseId;
+
+            switch(endpoint) {
+                case 'health':
+                    url = `${API_BASE}/health`;
+                    responseId = 'response-health';
+                    break;
+                case 'products':
+                    url = `${API_BASE}/products`;
+                    responseId = 'response-products';
+                    break;
+                case 'products-cake':
+                    url = `${API_BASE}/products/category/cake`;
+                    responseId = 'response-products-category';
+                    break;
+                case 'products-pastry':
+                    url = `${API_BASE}/products/category/pastry`;
+                    responseId = 'response-products-category';
+                    break;
+                case 'products-new':
+                    url = `${API_BASE}/products/category/new-arrival`;
+                    responseId = 'response-products-category';
+                    break;
+                case 'product-single':
+                    url = `${API_BASE}/products/1`;
+                    responseId = 'response-product-single';
+                    break;
+                case 'orders':
+                    url = `${API_BASE}/orders`;
+                    responseId = 'response-orders';
+                    break;
+                case 'order-single':
+                    url = `${API_BASE}/orders/1`;
+                    responseId = 'response-order-single';
+                    break;
+                case 'create-order':
+                    url = `${API_BASE}/orders`;
+                    method = 'POST';
+                    body = JSON.stringify({
+                        customer_name: 'Test Customer',
+                        phone: '1234567890',
+                        delivery_address: 'Test Address, Test City',
+                        total_amount: 500,
+                        items: [{
+                            product_id: 1,
+                            product_name: 'Chocolate Cake',
+                            quantity: 1,
+                            price: 450
+                        }]
+                    });
+                    responseId = 'response-create-order';
+                    break;
+            }
+
+            const responseBox = document.getElementById(responseId);
+            responseBox.classList.add('show');
+            responseBox.innerHTML = '<div class="loading"></div> Loading...';
+
+            try {
+                const options = {
+                    method,
+                    headers: { 'Content-Type': 'application/json' }
+                };
+                if (body) options.body = body;
+
+                const response = await fetch(url, options);
+                const data = await response.json();
+                
+                responseBox.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                responseBox.innerHTML = `<pre style="color: #e74c3c;">Error: ${error.message}</pre>`;
+            }
+        }
+
+        function copyUrl(endpoint, method = 'GET') {
+            const url = `${API_BASE}${endpoint}`;
+            navigator.clipboard.writeText(url).then(() => {
+                alert(`Copied to clipboard!\n\n${method} ${url}`);
+            });
+        }
+    </script>
+</body>
+</html>
